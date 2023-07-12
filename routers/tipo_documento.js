@@ -12,7 +12,8 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.get('/', validacionTipoDoc, (req,res)=>{
+app.get('/a', validacionTipoDoc, (req,res)=>{
+
     console.log("GET POST");
     res.send(JSON.stringify(req.body));
 });

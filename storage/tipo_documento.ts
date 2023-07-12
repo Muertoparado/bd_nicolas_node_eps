@@ -6,17 +6,17 @@ export class CreateTipoDocDto {
     @Transform(({value})=>{
         if(Math.floor(value)&& typeof value === 'number')
         return Math.floor(value);
-        else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly: true})
+        else throw {status:400, message:`el dato x no cumple los parametros`};},{toClassOnly: true})
         tipdoc_id:number;
 
     @Expose({name:'tipdoc_nombre'})
-    @Transform(({value})=>{if(/^[a-z A-Z].$/.test(value)) return value;
-        else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
+    @Transform(({value}) => {if(/^[a-z A-Z]+$/.test(value)) return value;
+        else throw {status:400, message:`el dato no v cumple los parametros`};},{toClassOnly:true})
         tipdoc_nombre: String;
 
     @Expose({name:'tipdoc_abreviatura'})
-    @Transform(({value})=>{if(/^[a-z A-Z].$/.test(value)) return value;
-        else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
+    @Transform(({value})=>{if(/^[a-z A-Z]+$/.test(value)) return value;
+        else throw {status:400, message:`el dato no w cumple los parametros`};},{toClassOnly:true})
         tipdoc_abreviatura: String;
 
     

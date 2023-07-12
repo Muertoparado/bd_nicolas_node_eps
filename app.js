@@ -1,13 +1,13 @@
 import express from 'express';
 import app from './routers/tipo_documento.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const appExpress = express();
 
+appExpress.use(express.json());
 appExpress.use("/app", app);
-const config ={
-    hostname:"127.3.3.3",
-    port: 5020
-}
 
-appExpress.listen(config, ()=>{
-    console.log(`http://${config.hostname}:${config.port}`)
+const config=JSON.parse(process.env.MY_CONFIG);
+appExpress.listen(config, () => {
+    console.log(`http://${config.hostname}:${config.port}`);
 });
