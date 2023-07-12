@@ -1,12 +1,12 @@
 import express from 'express';
 import 'reflect-metadata';
 import {plainToClass} from 'class-transformer';
-import {tipodocumento} from '../routers/tipo_documento.ts'
+import {CreateTipoDocDto} from '../controller/tipo_documento.js'
 
 const validacionTipoDoc = express();
 validacionTipoDoc.use((req,res,next)=>{
     try {
-        let data = plainToClass(tipodocumento, req.body, {excludeExtraneousValues: true});
+        let data = plainToClass(CreateTipoDocDto, req.body, {excludeExtraneousValues: true});
         req.body = JSON.parse(JSON.stringify(data));
         next();
     } catch (error) {
