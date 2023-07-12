@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsString, IsNumber } from 'class-validator';
-import { Expose } from 'class-transformer';
+//import { IsString, IsNumber} from 'class-validator';
+import { Expose, Transform } from 'class-transformer';
 export class CreateTipoDocDto {
     constructor(tipdoc_id, tipdoc_nombre, tipdoc_abreviatura) {
         this.tipdoc_id = tipdoc_id;
@@ -17,17 +17,32 @@ export class CreateTipoDocDto {
     }
 }
 __decorate([
-    IsNumber(),
-    Expose(),
+    Expose({ name: 'tipdoc_id' }),
+    Transform(({ value }) => {
+        if (Math.floor(value) && typeof value === 'number')
+            return Math.floor(value);
+        else
+            throw { status: 400, message: `el dato no cumple los parametros` };
+    }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], CreateTipoDocDto.prototype, "tipdoc_id", void 0);
 __decorate([
-    IsString(),
-    Expose(),
+    Expose({ name: 'tipdoc_nombre' }),
+    Transform(({ value }) => {
+        if (/^[a-z A-Z].$/.test(value))
+            return value;
+        else
+            throw { status: 400, message: `el dato no cumple los parametros` };
+    }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], CreateTipoDocDto.prototype, "tipdoc_nombre", void 0);
 __decorate([
-    IsString(),
-    Expose(),
+    Expose({ name: 'tipdoc_abreviatura' }),
+    Transform(({ value }) => {
+        if (/^[a-z A-Z].$/.test(value))
+            return value;
+        else
+            throw { status: 400, message: `el dato no cumple los parametros` };
+    }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], CreateTipoDocDto.prototype, "tipdoc_abreviatura", void 0);

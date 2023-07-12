@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import { CreatetipodocDto } from '../storage/tipo_documento.ts';
-import { validationMiddleware } from '../middleware/validacionTipoDoc.js';
+import validacionTipoDoc  from '../middleware/validacionTipoDoc.js';
 import mysql from 'mysql2';
+
 let con= undefined;
 const app = Router();
 
@@ -12,7 +12,7 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.get('/', validationMiddleware(CreatetipodocDto), (req,res)=>{
+app.get('/', validacionTipoDoc, (req,res)=>{
     console.log("GET POST");
     res.send(JSON.stringify(req.body));
 });
