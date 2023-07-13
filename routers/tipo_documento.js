@@ -21,9 +21,25 @@ app.get('/pacientes', validacionTipoDoc, (req,res)=>{
             return;
         }
 
-    console.log("GET POST");
+    console.log("GET PACIENTES");
     res.send(JSON.stringify(data));
-    console.log("info");
+    console.log(data);
+    })
+    
+});
+
+app.get('/citas', validacionTipoDoc, (req,res)=>{
+    con.query(/*sql */ `SELECT * FROM  cita 
+    ORDER BY cit_codigo `, (err,data,fil)=>{
+        if (err) {
+            console.error("Error al ejecutar la consulta de inserción: ", err);
+            res.status(500).send("Error al ejecutar la consulta de inserción");
+            return;
+        }
+
+    console.log("GET citas");
+    res.send(JSON.stringify(data));
+    console.log(data);
     })
     
 });
