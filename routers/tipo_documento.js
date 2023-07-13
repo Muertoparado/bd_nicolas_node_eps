@@ -130,6 +130,23 @@ console.log(data);
 })  
 });
 
+app.get('/med/consultorios', validacionTipoDoc, (req,res)=>{
+    const { fecha } = req.params;
+con.query(/*sql */ `SELECT m.med_nombreCompleto, m.med_consultorio  FROM  medico AS m 
+`,[fecha], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+
+console.log("GET pacientes cita fecha");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
+
+
 
 
 export default app;
