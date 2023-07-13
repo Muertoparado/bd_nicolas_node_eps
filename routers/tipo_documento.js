@@ -79,6 +79,23 @@ console.log("GET citas prox");
 res.send(JSON.stringify(data));
 console.log(data);
 })
+});
+
+
+app.get('/pacientes/:med', validacionTipoDoc, (req,res)=>{
+    const { med } = req.params;
+con.query(/*sql */ `SELECT * FROM  cita WHERE cit_medico =? 
+`,[med], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+
+console.log("GET pacientes cita");
+res.send(JSON.stringify(data));
+console.log(data);
+})
 
     
 });
