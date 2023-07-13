@@ -44,4 +44,47 @@ app.get('/citas', validacionTipoDoc, (req,res)=>{
     
 });
 
+/* 
+app.get('/mespecialidad/:medespecialidad', validacionTipoDoc, (req, res) => {
+    const { medespecialidad } = req.params;
+    console.log(medespecialidad);
+    con.query(
+      `SELECT medico.med_nombreCompleto
+      FROM medico
+      INNER JOIN especialidad
+      ON medico.med_especialidad = especialidad.esp_id
+      WHERE especialidad.esp_nombre = ?`,
+      [medespecialidad],
+      (err, data) => {
+        if (err) {
+          console.error("Error al ejecutar la consulta: ", err);
+          res.status(500).send("Error al ejecutar la consulta");
+          return;
+        }
+  
+        console.log("GET m especialidad");
+        res.send(data);
+        console.log(data);
+      });
+ */
+
+app.get('/citaproxima/:id', validacionTipoDoc, (req,res)=>{
+    const { id } = req.params;
+con.query(/*sql */ `SELECT cit_fecha FROM  cita WHERE cit_datosUsuario =? 
+`,[id], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+
+console.log("GET citas prox");
+res.send(JSON.stringify(data));
+console.log(data);
+})
+
+    
+});
+
+
 export default app;

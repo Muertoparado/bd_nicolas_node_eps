@@ -34,10 +34,34 @@ INSERT INTO medico (med_nroMatriculaProsional, med_nombreCompleto, med_consultor
 (1, 'Dr. Andrés Gómez', 1, 1),
 (2, 'Dra. Laura Rodríguez', 2, 2);
 
+-- Generar datos aleatorios de médico
+INSERT INTO medico (med_nroMatriculaProsional, med_nombreCompleto, med_consultorio, med_especialidad) VALUES
+(3, 'Dr. Ricardo López', 3, 1),
+(4, 'Dra. Laura García', 4, 2),
+(5, 'Dr. Javier Martínez', 5, 3),
+(6, 'Dra. Ana Ramírez', 6, 4),
+(7, 'Dr. Carlos González', 7, 5);
+
+
 INSERT INTO especialidad (esp_id, esp_nombre) VALUES
 (1, 'Pediatría'),
 (2, 'Cardiología');
 
+INSERT INTO especialidad (esp_id, esp_nombre) VALUES
+(3, 'Dermatología'),
+(4, 'Ginecología'),
+(5, 'Oftalmología'),
+(6, 'Ortopedia'),
+(7, 'Psiquiatría');
+
 INSERT INTO consultorio (CONS_CODIGO, cons_nombre) VALUES
 (1, 'Consultorio 101'),
 (2, 'Consultorio 202');
+
+
+INSERT INTO consultorio (CONS_CODIGO, cons_nombre) VALUES
+(3, 'Consultorio 303'),
+(4, 'Consultorio 404'),
+(5, 'Consultorio 505'),
+(6, 'Consultorio 606'),
+(7, 'Consultorio 707');
