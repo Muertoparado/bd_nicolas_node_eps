@@ -156,11 +156,31 @@ con.query(/*sql */ `SELECT COUNT(*) AS contador_citas FROM  cita  WHERE cit_medi
         return;
     }
     const contadorCitas = data[0].contador_citas;
-console.log("GET ");
+console.log("GET contador citas med fecha");
 res.send(JSON.stringify(data));
 console.log({contadorCitas});
 })  
 });
+
+app.get('/consultorios/:id', validacionTipoDoc, (req,res)=>{
+    const { id } = req.params;
+con.query(/*sql */ `SELECT cita.cit_codigo, cita.cit_fecha, cita.cit_estadoCita, medico.med_consultorio
+FROM cita
+INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional
+WHERE cita.cit_datosUsuario = ?
+`,[id], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+   
+console.log("GET consultorios id paciente");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
+
 
 
 
