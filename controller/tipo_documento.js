@@ -22,7 +22,7 @@ __decorate([
         if (Math.floor(value) && typeof value === 'number')
             return Math.floor(value);
         else
-            throw { status: 400, message: `el dato x no cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], CreateTipoDocDto.prototype, "tipdoc_id", void 0);
@@ -32,7 +32,7 @@ __decorate([
         if (/^[a-z A-Z]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `el dato no v cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], CreateTipoDocDto.prototype, "tipdoc_nombre", void 0);
@@ -42,7 +42,7 @@ __decorate([
         if (/^[a-z A-Z]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `el dato no w cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], CreateTipoDocDto.prototype, "tipdoc_abreviatura", void 0);
