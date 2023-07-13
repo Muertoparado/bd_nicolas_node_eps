@@ -114,6 +114,22 @@ console.log(data);
 })  
 });
 
+app.get('/citas/:fecha', validacionTipoDoc, (req,res)=>{
+    const { fecha } = req.params;
+con.query(/*sql */ `SELECT * FROM  cita WHERE cit_fecha =? 
+`,[fecha], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+
+console.log("GET pacientes cita fecha");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
+
 
 
 export default app;
