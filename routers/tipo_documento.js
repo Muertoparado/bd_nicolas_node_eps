@@ -82,7 +82,7 @@ console.log(data);
 });
 
 
-app.get('/pacientes/:med', validacionTipoDoc, (req,res)=>{
+app.get('/pacientes/med/:med', validacionTipoDoc, (req,res)=>{
     const { med } = req.params;
 con.query(/*sql */ `SELECT * FROM  cita WHERE cit_medico =? 
 `,[med], (err,data,fil)=>{
@@ -95,10 +95,25 @@ con.query(/*sql */ `SELECT * FROM  cita WHERE cit_medico =?
 console.log("GET pacientes cita");
 res.send(JSON.stringify(data));
 console.log(data);
-})
-
-    
+})  
 });
+
+app.get('/pacientes/:id', validacionTipoDoc, (req,res)=>{
+    const { id } = req.params;
+con.query(/*sql */ `SELECT * FROM  cita WHERE cit_datosUsuario =? 
+`,[id], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
+
+console.log("GET pacientes cita");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
+
 
 
 export default app;
