@@ -182,8 +182,25 @@ console.log(data);
 });
 
 
+app.get('/citas/genero/:gen', validacionTipoDoc, (req,res)=>{
+    const { gen } = req.params;
+    console.log(gen);
+con.query(/*sql */ `SELECT c.cit_codigo, c.cit_fecha, c.cit_datosUsuario, usu.usu_genero
+FROM cita AS c
+INNER JOIN usuario AS usu ON c.cit_datosUsuario = usu.usu_id
+WHERE usu.usu_genero = ? AND c.cit_estadoCita = 2;
+`,[gen], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
 
-
+console.log("GET citas atendidas por genero");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
 
 
 

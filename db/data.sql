@@ -32,9 +32,16 @@ INSERT INTO cita (cit_codigo, cit_fecha, cit_estadoCita, cit_medico, cit_datosUs
 (8, '2023-07-22', 1, 5, 3),
 (9, '2023-07-23', 2, 6, 4),
 (10, '2023-07-24', 1, 7, 5);
+
+INSERT INTO cita (cit_codigo, cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario) VALUES
+(11, '2023-07-25', 2, 3, 1),
+(12, '2023-07-26', 1, 4, 2),
+(13, '2023-07-27', 2, 5, 3),
+(14, '2023-07-28', 1, 6, 4),
+(15, '2023-07-29', 2, 7, 5);
 INSERT INTO estado_cita (estcita_id, estcita_nombre) VALUES
-(5, 'Pendiente'),
-(7, 'Confirmada');
+(1, 'Pendiente'),
+(2, 'Confirmada');
 
 INSERT INTO medico (med_nroMatriculaProsional, med_nombreCompleto, med_consultorio, med_especialidad) VALUES
 (1, 'Dr. Andrés Gómez', 1, 1),

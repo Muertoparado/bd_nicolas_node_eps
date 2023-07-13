@@ -46,6 +46,7 @@ CREATE TABLE estado_cita(
     estcita_nombre VARCHAR(20)
 );
 
+
 CREATE TABLE medico (
     med_nroMatriculaProsional INT PRIMARY KEY,
     med_nombreCompleto VARCHAR(120),
