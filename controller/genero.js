@@ -7,44 +7,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsDefined } from 'class-validator';
+import { IsEmpty } from 'class-validator';
 import { Expose, Transform } from 'class-transformer';
-export class CreateTipoDocDto {
-    constructor(tipodoc_id, tipodoc_nombre, tipodoc_abreviatura) {
-        this.tipodoc_id = tipodoc_id;
-        this.tipodoc_nombre = tipodoc_nombre;
-        this.tipodoc_abreviatura = tipodoc_abreviatura;
+export class CreateGeneroDto {
+    constructor(gen_id, gen_nombre, gen_abreviatura) {
+        this.gen_id = gen_id;
+        this.gen_nombre = gen_nombre;
+        this.gen_abreviatura = gen_abreviatura;
     }
 }
 __decorate([
-    Expose({ name: 'tipodoc_id' }),
-    IsDefined({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
+    Expose({ name: 'gen_id' }),
+    IsEmpty({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
     Transform(({ value }) => {
         if (Math.floor(value) && typeof value === 'number')
             return Math.floor(value);
         else
-            throw { status: 400, message: `el a dato no cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
-], CreateTipoDocDto.prototype, "tipodoc_id", void 0);
+], CreateGeneroDto.prototype, "gen_id", void 0);
 __decorate([
-    Expose({ name: 'tipodoc_nombre' }),
-    IsDefined({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
+    Expose({ name: 'gen_nombre' }),
+    IsEmpty({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
     Transform(({ value }) => {
         if (/^[a-z A-Z]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `el v dato no cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateTipoDocDto.prototype, "tipodoc_nombre", void 0);
+], CreateGeneroDto.prototype, "gen_nombre", void 0);
 __decorate([
-    Expose({ name: 'tipdoc_abreviatura' }),
+    Expose({ name: 'gen_abreviatura' }),
+    IsEmpty({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
     Transform(({ value }) => {
         if (/^[a-z A-Z]+$/.test(value))
             return value;
         else
-            throw { status: 400, message: `el dato ac no cumple los parametros` };
+            throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateTipoDocDto.prototype, "tipodoc_abreviatura", void 0);
+], CreateGeneroDto.prototype, "gen_abreviatura", void 0);
