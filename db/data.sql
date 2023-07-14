@@ -39,9 +39,25 @@ INSERT INTO cita (cit_codigo, cit_fecha, cit_estadoCita, cit_medico, cit_datosUs
 (13, '2023-07-27', 2, 5, 3),
 (14, '2023-07-28', 1, 6, 4),
 (15, '2023-07-29', 2, 7, 5);
+
+INSERT INTO cita (cit_codigo, cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario) VALUES
+(16, '2023-07-30', 3, 3, 1),
+(17, '2023-07-31', 3, 4, 1),
+(18, '2023-08-01', 3, 5, 2),
+(19, '2023-08-02', 3, 6, 4),
+(20, '2023-08-03', 3, 7, 5);
+
+INSERT INTO cita (cit_codigo, cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario) VALUES
+(21, '2023-07-01', 3, 3, 1),
+(22, '2023-07-10', 3, 4, 5),
+(23, '2023-07-15', 3, 5, 2),
+(24, '2023-07-25', 3, 6, 3),
+(25, '2023-07-30', 3, 7, 4);
+
 INSERT INTO estado_cita (estcita_id, estcita_nombre) VALUES
 (1, 'Pendiente'),
-(2, 'Confirmada');
+(2, 'Confirmada'),
+(3, 'Rechazada');
 
 INSERT INTO medico (med_nroMatriculaProsional, med_nombreCompleto, med_consultorio, med_especialidad) VALUES
 (1, 'Dr. Andrés Gómez', 1, 1),

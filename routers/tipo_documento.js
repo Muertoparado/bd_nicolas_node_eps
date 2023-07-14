@@ -202,6 +202,25 @@ console.log(data);
 })  
 });
 
+app.get('/citas/rechazadas/:mes', validacionTipoDoc, (req,res)=>{
+    const { mes } = req.params;
+    console.log();
+con.query(/*sql */ `SELECT c.cit_codigo, c.cit_fecha, usu.usu_nombre, m.med_nombreCompleto
+FROM cita AS c
+INNER JOIN medico AS m ON c.cit_medico = m.med_nroMatriculaProsional
+INNER JOIN usuario AS usu ON c.cit_datosUsuario = usu.usu_id
+WHERE MONTH(c.cit_fecha) = ? AND c.cit_estadoCita = 3;
+`,[mes], (err,data,fil)=>{
+    if (err) {
+        console.error("Error al ejecutar la consulta de inserción: ", err);
+        res.status(500).send("Error al ejecutar la consulta de inserción");
+        return;
+    }
 
+console.log("GET citas rechazadas en un mes en especifico");
+res.send(JSON.stringify(data));
+console.log(data);
+})  
+});
 
 export default app;
