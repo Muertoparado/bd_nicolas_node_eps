@@ -1,4 +1,4 @@
-//import { IsString, IsNumber} from 'class-validator';
+import { IsString, IsNumber, IsDefined} from 'class-validator';
 import { Expose, Type, Transform } from 'class-transformer';
 
 export class CreateTipoDocDto {
@@ -10,6 +10,7 @@ export class CreateTipoDocDto {
         tipdoc_id:number;
 
     @Expose({name:'tipdoc_nombre'})
+    @IsDefined({message: ()=>{throw{status:401, message:`el mensaje es obligatorio`}}})
     @Transform(({value}) => {if(/^[a-z A-Z]+$/.test(value)) return value;
         else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
         tipdoc_nombre: String;
