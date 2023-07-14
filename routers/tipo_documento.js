@@ -47,7 +47,7 @@ app.get('/citas', validacionTipoDoc, (req,res)=>{
 app.get('/mesp/:especialidad', validacionTipoDoc, (req,res)=>{
     const { especialidad } = req.params;
     console.log(especialidad);
-con.query(/*sql */ `SELECT med_nombreCompleto FROM  medico WHERE med_especialidad =? 
+con.query(/*sql */ `SELECT m.med_nombreCompleto FROM  medico AS m WHERE m.med_especialidad =? 
 `,[especialidad], (err,data,fil)=>{
     if (err) {
         console.error("Error al ejecutar la consulta de inserción: ", err);
@@ -60,10 +60,7 @@ res.send(JSON.stringify(data));
 console.log(data);
 })
 
-    
 });
-
-
 
 app.get('/citaproxima/:id', validacionTipoDoc, (req,res)=>{
     const { id } = req.params;
