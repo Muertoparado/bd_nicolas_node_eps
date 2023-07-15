@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import validacionTipoDoc  from '../middleware/validacionTipoDoc.js';
+import validacionGenero from '../middleware/validacionGenero.js';
 import mysql from 'mysql2';
 
 let con= undefined;
@@ -15,6 +16,42 @@ app2.post('/tipodoc/add', validacionTipoDoc, (req,res)=>{
     const datos={tipodoc_id,tipodoc_nombre,tipodoc_abreviatura};
     console.log(datos);
     con.query(/*sql */ `INSERT INTO tipo_documento SET ?`,[datos], (err,data,fil)=>{
+        if (err) {
+            console.error("Error al ejecutar la consulta de inserción: ", err);
+            res.status(500).send("Error al ejecutar la consulta de inserción");
+            return;
+        }
+
+    console.log("post tipo documento");
+    res.send(JSON.stringify(data));
+    console.log(data);
+    })
+    
+});
+
+app2.post('/genero/add', validacionGenero, (req,res)=>{
+    const {gen_id,gen_nombre,gen_abreviatura}=req.body
+    const datos={gen_id,gen_nombre,gen_abreviatura};
+    console.log(datos);
+    con.query(/*sql */ `INSERT INTO genero SET ?`,[datos], (err,data,fil)=>{
+        if (err) {
+            console.error("Error al ejecutar la consulta de inserción: ", err);
+            res.status(500).send("Error al ejecutar la consulta de inserción");
+            return;
+        }
+
+    console.log("post tipo documento");
+    res.send(JSON.stringify(data));
+    console.log(data);
+    })
+    
+});
+
+app2.post('/usuario/add', validacionGenero, (req,res)=>{
+    const {gen_id,gen_nombre,gen_abreviatura}=req.body
+    const datos={gen_id,gen_nombre,gen_abreviatura};
+    console.log(datos);
+    con.query(/*sql */ `INSERT INTO genero SET ?`,[datos], (err,data,fil)=>{
         if (err) {
             console.error("Error al ejecutar la consulta de inserción: ", err);
             res.status(500).send("Error al ejecutar la consulta de inserción");
