@@ -7,9 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsEmpty } from 'class-validator';
+import { IsEmpty, IsDefined } from 'class-validator';
 import { Expose, Transform } from 'class-transformer';
-export class CreateUserDto {
+export class CreateUsuarioDto {
     constructor(usu_id, usu_nombre, usu_segdo_nombre, usu_telefono, usu_direccion, usu_email) {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
@@ -21,7 +21,7 @@ export class CreateUserDto {
 }
 __decorate([
     Expose({ name: 'usu_id' }),
-    IsEmpty({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
+    IsDefined({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
     Transform(({ value }) => {
         if (Math.floor(value) && typeof value === 'number')
             return Math.floor(value);
@@ -29,7 +29,7 @@ __decorate([
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", Number)
-], CreateUserDto.prototype, "usu_id", void 0);
+], CreateUsuarioDto.prototype, "usu_id", void 0);
 __decorate([
     Expose({ name: 'usu_nombre' }),
     IsEmpty({ message: () => { throw { status: 401, message: `el mensaje es obligatorio` }; } }),
@@ -40,7 +40,7 @@ __decorate([
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "usu_nombre", void 0);
+], CreateUsuarioDto.prototype, "usu_nombre", void 0);
 __decorate([
     Expose({ name: 'usu_segdo_nombre' }),
     Transform(({ value }) => {
@@ -50,34 +50,34 @@ __decorate([
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "usu_segdo_nombre", void 0);
+], CreateUsuarioDto.prototype, "usu_segdo_nombre", void 0);
 __decorate([
     Expose({ name: 'usu_telefono' }),
     Transform(({ value }) => {
-        if (/^[a-z A-Z]+$/.test(value))
+        if (/^[0-9]+$/.test(value) && typeof value != "number")
             return value;
         else
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "usu_telefono", void 0);
+], CreateUsuarioDto.prototype, "usu_telefono", void 0);
 __decorate([
     Expose({ name: 'usu_direccion' }),
     Transform(({ value }) => {
-        if (/^[a-z A-Z 0-9 #]+$/.test(value))
+        if (/^[a-z A-Z 0-9 # -]+$/.test(value))
             return value;
         else
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "usu_direccion", void 0);
+], CreateUsuarioDto.prototype, "usu_direccion", void 0);
 __decorate([
     Expose({ name: 'usu_email' }),
     Transform(({ value }) => {
-        if (/^[@.]+$/.test(value))
+        if (/^[@. a-z A-Z 0-9]+$/.test(value))
             return value;
         else
             throw { status: 400, message: `el dato no cumple los parametros` };
     }, { toClassOnly: true }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "usu_email", void 0);
+], CreateUsuarioDto.prototype, "usu_email", void 0);

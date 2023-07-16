@@ -1,9 +1,10 @@
 import { IsString, IsEmpty, IsDefined} from 'class-validator';
 import { Expose, Type, Transform } from 'class-transformer';
 
-export class CreateUserDto{
+export class CreateUsuarioDto{
+
     @Expose({name:'usu_id'})
-    @IsEmpty({message: ()=>{throw{status:401, message:`el mensaje es obligatorio`}}})
+    @IsDefined({message: ()=>{throw{status:401, message:`el mensaje es obligatorio`}}})
     @Transform(({value})=>{
         if(Math.floor(value)&& typeof value === 'number')
         return Math.floor(value);
@@ -22,17 +23,17 @@ export class CreateUserDto{
         usu_segdo_nombre:string;
 
     @Expose({name:'usu_telefono'})
-    @Transform(({value}) => {if(/^[a-z A-Z]+$/.test(value)) return value;
+    @Transform(({value}) => {if(/^[0-9]+$/.test(value)&& typeof value != "number") return value;
         else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
         usu_telefono:string;
     
         @Expose({name:'usu_direccion'})
-    @Transform(({value}) => {if(/^[a-z A-Z 0-9 #]+$/.test(value)) return value;
+    @Transform(({value}) => {if(/^[a-z A-Z 0-9 # -]+$/.test(value)) return value;
         else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
         usu_direccion:string;
 
         @Expose({name:'usu_email'})
-    @Transform(({value}) => {if(/^[@.]+$/.test(value)) return value;
+    @Transform(({value}) => {if(/^[@. a-z A-Z 0-9]+$/.test(value)) return value;
         else throw {status:400, message:`el dato no cumple los parametros`};},{toClassOnly:true})
         usu_email:string;
 

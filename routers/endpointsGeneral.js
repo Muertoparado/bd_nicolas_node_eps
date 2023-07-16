@@ -12,7 +12,7 @@ app.use((req, res, next)=>{
     next();
 });
 
-app.get('/pacientes', validacionTipoDoc, (req,res)=>{
+app.get('/pacientes', (req,res)=>{
     con.query(/*sql */ `SELECT * FROM  usuario 
     ORDER BY usu_nombre`, (err,data,fil)=>{
         if (err) {
@@ -28,7 +28,7 @@ app.get('/pacientes', validacionTipoDoc, (req,res)=>{
     
 });
 
-app.get('/citas', validacionTipoDoc, (req,res)=>{
+app.get('/citas', (req,res)=>{
     con.query(/*sql */ `SELECT * FROM  cita 
     ORDER BY cit_codigo `, (err,data,fil)=>{
         if (err) {
@@ -44,7 +44,7 @@ app.get('/citas', validacionTipoDoc, (req,res)=>{
     
 });
 
-app.get('/mesp/:especialidad', validacionTipoDoc, (req,res)=>{
+app.get('/mesp/:especialidad',(req,res)=>{
     const { especialidad } = req.params;
     console.log(especialidad);
 con.query(/*sql */ `SELECT m.med_nombreCompleto FROM  medico AS m WHERE m.med_especialidad =? 
@@ -62,7 +62,7 @@ console.log(data);
 
 });
 
-app.get('/citaproxima/:id', validacionTipoDoc, (req,res)=>{
+app.get('/citaproxima/:id', (req,res)=>{
     const { id } = req.params;
 con.query(/*sql */ `SELECT cit_fecha FROM  cita WHERE cit_datosUsuario =? 
 `,[id], (err,data,fil)=>{
@@ -79,7 +79,7 @@ console.log(data);
 });
 
 
-app.get('/pacientes/med/:med', validacionTipoDoc, (req,res)=>{
+app.get('/pacientes/med/:med', (req,res)=>{
     const { med } = req.params;
 con.query(/*sql */ `SELECT * FROM  cita WHERE cit_medico =? 
 `,[med], (err,data,fil)=>{
@@ -95,7 +95,7 @@ console.log(data);
 })  
 });
 
-app.get('/pacientes/:id', validacionTipoDoc, (req,res)=>{
+app.get('/pacientes/:id', (req,res)=>{
     const { id } = req.params;
 con.query(/*sql */ `SELECT * FROM  cita WHERE cit_datosUsuario =? 
 `,[id], (err,data,fil)=>{
@@ -111,7 +111,7 @@ console.log(data);
 })  
 });
 
-app.get('/citas/:fecha', validacionTipoDoc, (req,res)=>{
+app.get('/citas/:fecha', (req,res)=>{
     const { fecha } = req.params;
 con.query(/*sql */ `SELECT * FROM  cita WHERE cit_fecha =? 
 `,[fecha], (err,data,fil)=>{
@@ -127,7 +127,7 @@ console.log(data);
 })  
 });
 
-app.get('/med/consultorios', validacionTipoDoc, (req,res)=>{
+app.get('/med/consultorios', (req,res)=>{
     const { body } = req.params;
 con.query(/*sql */ `SELECT m.med_nombreCompleto, m.med_consultorio  FROM  medico AS m 
 `,[body], (err,data,fil)=>{
@@ -143,7 +143,7 @@ console.log(data);
 })  
 });
 
-app.get('/med/:id/:fecha', validacionTipoDoc, (req,res)=>{
+app.get('/med/:id/:fecha', (req,res)=>{
     const { id,fecha } = req.params;
 con.query(/*sql */ `SELECT COUNT(*) AS contador_citas FROM  cita  WHERE cit_medico=? AND cit_fecha=?
 `,[id,fecha], (err,data,fil)=>{
@@ -159,7 +159,7 @@ console.log({contadorCitas});
 })  
 });
 
-app.get('/consultorios/:id', validacionTipoDoc, (req,res)=>{
+app.get('/consultorios/:id', (req,res)=>{
     const { id } = req.params;
 con.query(/*sql */ `SELECT cita.cit_codigo, cita.cit_fecha, cita.cit_estadoCita, medico.med_consultorio
 FROM cita
@@ -179,7 +179,7 @@ console.log(data);
 });
 
 
-app.get('/citas/genero/:gen', validacionTipoDoc, (req,res)=>{
+app.get('/citas/genero/:gen', (req,res)=>{
     const { gen } = req.params;
     console.log(gen);
 con.query(/*sql */ `SELECT c.cit_codigo, c.cit_fecha, c.cit_datosUsuario, usu.usu_genero
@@ -199,7 +199,7 @@ console.log(data);
 })  
 });
 
-app.get('/citas/rechazadas/:mes', validacionTipoDoc, (req,res)=>{
+app.get('/citas/rechazadas/:mes', (req,res)=>{
     const { mes } = req.params;
     console.log();
 con.query(/*sql */ `SELECT c.cit_codigo, c.cit_fecha, usu.usu_nombre, m.med_nombreCompleto

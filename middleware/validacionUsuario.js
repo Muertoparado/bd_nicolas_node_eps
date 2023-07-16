@@ -1,10 +1,10 @@
 import express from 'express';
 import 'reflect-metadata';
 import {plainToClass} from 'class-transformer';
-import {CreateUsuarioDto} from '../controller/genero.js';
+import {CreateUsuarioDto} from '../controller/usuario.js';
 
-const validacion = express();
-validacion.use(async (req,res,next)=>{
+const validacionUsuario = express();
+validacionUsuario.use(async (req,res,next)=>{
     try {
         let data = plainToClass(CreateUsuarioDto, req.body, {excludeExtraneousValues: true});
         req.body = JSON.parse(JSON.stringify(data));
@@ -14,4 +14,4 @@ validacion.use(async (req,res,next)=>{
     }
 })
 
-export default validacion;
+export default validacionUsuario;
