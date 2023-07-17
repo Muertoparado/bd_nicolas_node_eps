@@ -3,6 +3,7 @@ import validacionTipoDoc  from '../middleware/validacionTipoDoc.js';
 import validacionGenero from '../middleware/validacionGenero.js';
 import validacionUsuario from '../middleware/validacionUsuario.js';
 import validacionacudiente from '../middleware/validacionAcudiente.js';
+import validacionespecialidad from '../middleware/validacionEspecialidad.js'
 
 
 import mysql from 'mysql2';
@@ -83,6 +84,24 @@ app2.post('/acudiente/add', validacionacudiente, (req,res)=>{
         }
 
     console.log("post acudiente");
+    res.send(JSON.stringify(data));
+    console.log(data);
+    })
+    
+});
+
+app2.post('/especialidad/add', validacionespecialidad, (req,res)=>{
+    const {esp_id,esp_nombre}=req.params
+    const datos={esp_id,esp_nombre};
+    console.log(datos);
+    con.query(/*sql */ `INSERT INTO especialidad SET ?`,[datos], (err,data,fil)=>{
+        if (err) {
+            console.error("Error al ejecutar la consulta de inserción: ", err);
+            res.status(500).send("Error al ejecutar la consulta de inserción");
+            return;
+        }
+
+    console.log("post especialidad");
     res.send(JSON.stringify(data));
     console.log(data);
     })
