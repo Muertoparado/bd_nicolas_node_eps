@@ -91,7 +91,7 @@ app2.post('/acudiente/add', validacionacudiente, (req,res)=>{
 });
 
 app2.post('/especialidad/add', validacionespecialidad, (req,res)=>{
-    const {esp_id,esp_nombre}=req.params
+    const {esp_id,esp_nombre}=req.body
     const datos={esp_id,esp_nombre};
     console.log(datos);
     con.query(/*sql */ `INSERT INTO especialidad SET ?`,[datos], (err,data,fil)=>{
